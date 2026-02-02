@@ -1,57 +1,70 @@
 {
   "name": "react-if-vz",
-  "version": "2.0.0",
-  "description": "React declarative conditional rendering components (Ifz, When, Switch/Case) with support for nested conditions, dynamic children, and styling.",
-  "main": "build/index.js",
+  "version": "2.2.0",
+  "description": "Declarative conditional rendering for React (Ifz, When, Switch/Case) with nested logic, dynamic children, and styling.",
+  "author": "Delpi.Kye",
+  "license": "MIT",
+  "sideEffects": false,
+  "main": "build/index.cjs.js",
   "module": "build/index.esm.js",
-  "browser": "build/index.js",
   "types": "build/index.d.ts",
+
+  "exports": {
+    ".": {
+      "import": "./build/index.esm.js",
+      "require": "./build/index.cjs.js",
+      "types": "./build/index.d.ts"
+    }
+  },
+
   "files": [
     "build"
   ],
+
   "scripts": {
-    "clean": "rimraf ./build",
+    "clean": "rimraf build",
     "build": "rollup -c",
     "cb": "npm run clean && npm run build",
     "prepublishOnly": "npm run build"
   },
+
   "repository": {
     "type": "git",
     "url": "https://github.com/delpikye-v/react-if-vz.git"
   },
   "homepage": "https://github.com/delpikye-v/react-if-vz#readme",
+  "bugs": {
+    "url": "https://github.com/delpikye-v/react-if-vz/issues"
+  },
+
   "keywords": [
     "react",
-    "conditional",
+    "react-components",
+    "conditional-rendering",
     "if",
     "else",
     "switch",
     "case",
-    "rendering",
-    "wrapper",
-    "ifz",
     "when",
-    "react-components"
+    "ifz",
+    "jsx",
+    "ui"
   ],
-  "author": "Delpi.Kye",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/delpikye-v/react-if-vz/issues"
-  },
+
   "peerDependencies": {
-    "react": ">=16.8.0",
-    "react-dom": ">=16.8.0"
+    "react": ">=16.8.0"
   },
+
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.1.0",
     "@rollup/plugin-node-resolve": "^11.2.1",
+    "@types/react": "^17.0.2",
     "rimraf": "^3.0.2",
     "rollup": "^2.56.3",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.29.0",
-    "typescript": "^4.4.2",
-    "tslib": "^2.3.1"
-  },
-  "dependencies": {}
+    "tslib": "^2.3.1",
+    "typescript": "^4.4.2"
+  }
 }
