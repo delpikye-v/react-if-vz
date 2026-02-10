@@ -1,14 +1,18 @@
 import React, { ReactNode } from "react";
 import { TypeBooleanResult } from "./Ifz";
 import { IfzLogger } from "./utils";
+type TypeChainEntry = {
+    condition?: TypeBooleanResult | (() => TypeBooleanResult);
+    node: ReactNode;
+};
 export declare class IfzChain {
-    private entries;
-    private fallback;
     private logger;
     private traced;
-    constructor(logger?: IfzLogger, trace?: boolean);
-    when(condition: (() => TypeBooleanResult) | TypeBooleanResult, node: ReactNode): this;
+    private entries;
+    private fallback;
+    constructor(logger?: IfzLogger, traced?: boolean);
+    when(condition: TypeChainEntry["condition"], node: ReactNode): this;
     else(node: ReactNode): React.ReactNode;
-    private exec;
     render(): ReactNode;
 }
+export {};

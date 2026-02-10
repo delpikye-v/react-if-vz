@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { WrapperType } from "./types";
+import { TypeWrapper } from "./types";
 export type TypeSwitchProps<T = any> = {
     value?: (() => T) | T;
     children: ReactNode;
@@ -12,7 +12,7 @@ export type TypeCaseProps<T = any> = {
     args?: unknown[];
     className?: string;
     style?: React.CSSProperties;
-    wrapper?: WrapperType;
+    wrapper?: TypeWrapper;
     debug?: string;
 };
 export type TypeDefaultProps = {
@@ -20,7 +20,7 @@ export type TypeDefaultProps = {
     args?: unknown[];
     className?: string;
     style?: React.CSSProperties;
-    wrapper?: WrapperType;
+    wrapper?: TypeWrapper;
 };
 export declare function Switch<T = any>({ value, children, args, }: TypeSwitchProps<T>): React.ReactNode;
 export declare namespace Switch {

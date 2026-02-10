@@ -1,11 +1,13 @@
 import React from "react";
 import { TypeBooleanResult } from "./Ifz";
 import { IfzLogger } from "./utils";
-export declare function useIfz(args?: unknown[], opts?: {
+type TypeCondition<TArgs extends unknown[] = unknown[]> = TypeBooleanResult | ((...args: TArgs) => TypeBooleanResult);
+export declare function useIfz<TArgs extends unknown[] = unknown[]>(args?: TArgs, opts?: {
     logger?: IfzLogger;
     trace?: boolean;
 }): {
-    when: (condition: (() => TypeBooleanResult) | TypeBooleanResult, node: React.ReactNode) => any;
+    when: (condition: TypeCondition<TArgs>, node: React.ReactNode) => any;
     else: (fallback: React.ReactNode) => React.ReactNode;
     otherwise: (fallback: React.ReactNode) => React.ReactNode;
 };
+export {};

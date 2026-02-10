@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import { IfzChain } from "./IfzChain";
 import { IfzLogger } from "./utils";
-import { WrapperType } from "./types";
+import { TypeWrapper } from "./types";
 export declare const IfzConfig: {
     logger: IfzLogger;
     trace: boolean;
@@ -17,7 +17,7 @@ export type TypeConditionalProps<TArgs extends unknown[] = unknown[]> = {
     args?: TArgs;
     className?: string;
     style?: React.CSSProperties;
-    wrapper?: WrapperType;
+    wrapper?: TypeWrapper;
     debug?: string;
 };
 type TypeIfzProps = {
@@ -31,7 +31,9 @@ export declare function Else({ children, }: {
 export declare function ElseIfz({ children }: {
     children?: ReactNode;
 }): any;
+export declare function execValue<T, TArgs extends unknown[]>(v: T | ((...args: TArgs) => T), args: TArgs): T;
 export declare function execIfCondition<TArgs extends unknown[]>(condition: TypeBooleanResult | ((...args: TArgs) => TypeBooleanResult), args: TArgs): boolean;
+export declare function renderChildren<TArgs extends unknown[]>(children: ReactNode | ((...args: TArgs) => ReactNode), args: TArgs): any;
 export declare function Ifz({ children }: TypeIfzProps): React.JSX.Element;
 export declare namespace Ifz {
     var If: typeof import("./Ifz").If;
@@ -49,16 +51,16 @@ export declare function When<TCond extends (...args: any[]) => any>({ condition,
     children?: ReactNode | ((...args: InferArgs<TCond>) => ReactNode);
     args?: InferArgs<TCond>;
 }): React.JSX.Element;
-export declare const WhenAll: React.FC<{
+export declare function WhenAll({ conditions, children, }: {
     conditions: boolean[];
     children: ReactNode;
-}>;
-export declare const WhenAny: React.FC<{
+}): React.JSX.Element;
+export declare function WhenAny({ conditions, children, }: {
     conditions: boolean[];
     children: ReactNode;
-}>;
-export declare const WhenNot: React.FC<{
+}): React.JSX.Element;
+export declare function WhenNot({ condition, children, }: {
     condition: boolean;
     children: ReactNode;
-}>;
+}): React.JSX.Element;
 export {};

@@ -1,7 +1,7 @@
 {
   "name": "react-if-vz",
-  "version": "2.3.0",
-  "description": "Declarative conditional rendering for React (Ifz, When, Switch/Case) with nested logic, dynamic children, and styling.",
+  "version": "2.4.0",
+  "description": "Declarative conditional rendering for React — logic-first, TypeScript-native.",
   "author": "Delpi.Kye",
   "license": "MIT",
   "sideEffects": false,
@@ -39,16 +39,14 @@
 
   "keywords": [
     "react",
-    "react-components",
+    "typescript",
     "conditional-rendering",
-    "if",
-    "else",
-    "switch",
-    "case",
-    "when",
-    "ifz",
-    "jsx",
-    "ui"
+    "control-flow",
+    "if-else",
+    "switch-case",
+    "ui-logic",
+    "jsx-logic",
+    "react-patterns"
   ],
 
   "peerDependencies": {

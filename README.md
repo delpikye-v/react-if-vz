@@ -178,6 +178,8 @@ Ifz.chain({ trace: true })
   .else(<Guest />);
 ```
 
+- Ifz.chain only supports zero-argument conditions.
+
 ---
 
 ### Hook API
@@ -217,24 +219,52 @@ return when(v => v > 10, <Big />)
 
 ## 📊 Conditional Rendering Libraries Comparison
 
-| **Criteria**              | **react-if-vz** | **react-if** | **react-condish** | **react-if-then-else-switch** |
-| ------------------------- | :-------------: | :----------: | :---------------: | :---------------------------: |
-| Declarative JSX           |        ✅        |       ✅     |         ⚠️        |               ✅               |
-| If / Else                 |        ✅        |       ✅     |         ⚠️        |               ✅               |
-| ElseIf                    |        ✅        |       ❌     |         ❌        |               ❌               |
-| Switch / Case             |        ✅        |       ❌     |         ✅        |               ✅               |
-| Boolean Switch (no value) |        ✅        |       ❌     |         ⚠️        |               ❌               |
-| Function children         |        ✅        |       ❌     |         ❌        |               ❌               |
-| Shared args               |        ✅        |       ❌     |         ❌        |               ❌               |
-| TypeScript inference      |     ✅ Strong    |   ⚠️ Basic   |         ❌        |               ❌               |
-| Hook API                  |   ✅ `useIfz()`  |       ❌     |         ❌        |               ❌               |
-| Chain / Fluent API        |        ✅        |       ❌     |         ❌        |               ❌               |
-| Wrapper control           |    ✅ Explicit   |  ❌ Implicit |         ❌        |               ❌               |
-| Debug / trace             |        ✅        |       ❌     |         ❌        |               ❌               |
-| StrictMode / SSR safe     |        ✅        |      ⚠️      |         ⚠️        |               ⚠️               |
-| Bundle size               |     🟢 Small     |   🟢 Small   |   🟢 Very small   |           🟡 Medium            |
-| Actively designed         |        ✅        |      ⚠️      |         ⚠️        |               ❌               |
+| **Criteria**                 | **react-if-vz** | **react-if**  | **jsx-control-statements**  |
+| ---------------------------- | :-------------: | :----------:  | :------------------------:  |
+| Declarative JSX              |        ✅        |       ✅      |              ✅             |
+| Native JSX (no compile step) |        ✅        |       ✅      |              ❌             |
+| If / Else                    |        ✅        |       ✅      |              ✅             |
+| ElseIf                       |        ✅        |       ❌      |              ✅             |
+| Switch / Case                |        ✅        |       ✅      |              ❌             |
+| Boolean Switch (no value)    |        ✅        |       ❌      |              ❌             |
+| Function children            |        ✅        |  ⚠️ (manual)  |              ❌             |
+| Shared args                  |        ✅        |       ❌      |              ❌             |
+| TypeScript inference         |   ✅ **Strong**  |   ⚠️ Basic    |              ❌             |
+| Hook API                     |   ✅ `useIfz()`  |       ❌      |              ❌             |
+| Chain / Fluent API           |        ✅        |       ❌      |              ❌             |
+| Async condition handling     |  ❌ (by design)  |       ✅      |              ❌             |
+| Wrapper control              |    ✅ Explicit   |  ❌ Implicit  |              ❌             |
+| Debug / trace                |        ✅        |       ❌      |              ❌             |
+| StrictMode safe              |        ✅        |      ⚠️       |             ⚠️              |
+| SSR safe                     |        ✅        |      ⚠️       |              ❌             |
+| Build-time dependency        |        ❌        |       ❌      |      ✅ (Babel plugin)      |
+| Bundle size                  |     🟢 Small     |   🟢 Small    |        🟢 Very small        |
+| Design philosophy            |   Logic-first    | Feature-rich |        Template-like        |
+| Actively evolving            |        ✅        |      ⚠️       |              ❌             |
 
+
+<br />
+
+<b>react-if-vz</b>
+
+Designed for TypeScript-first applications with complex UI logic, where predictable and explicit render control matters.
+
+<b>react-if</b>
+
+A good fit for scenarios that require async conditions or Promise-based UI flows.
+
+<b>jsx-control-statements</b>
+
+A template-style approach relying on compile-time transforms; less commonly used in modern TypeScript-centric React codebases.
+
+<b> Why not async conditions?</b>
+
+- react-if-vz keeps rendering pure and synchronous by design.
+- Async conditions in JSX make renders unpredictable and harder to debug.
+- Async logic belongs in hooks or data layers, not in render flow.
+- This keeps UI logic explicit, predictable, and TypeScript-friendly.
+
+> Async belongs to data, not JSX.
 
 ---
 
