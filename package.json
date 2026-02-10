@@ -1,6 +1,6 @@
 {
   "name": "react-if-vz",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "Declarative conditional rendering for React (Ifz, When, Switch/Case) with nested logic, dynamic children, and styling.",
   "author": "Delpi.Kye",
   "license": "MIT",

@@ -1,4 +1,4 @@
-import React, { ReactNode, ReactElement } from "react";
+import React, { ReactNode } from "react";
 import { IfzChain } from "./IfzChain";
 import { IfzLogger } from "./utils";
 import { WrapperType } from "./types";
@@ -11,10 +11,6 @@ export declare function configureIfz(opts: {
     trace?: boolean;
 }): void;
 export type TypeBooleanResult = boolean | string | number | null | undefined;
-/**
- * Generic conditional props
- * TArgs = tuple args passed to condition / children
- */
 export type TypeConditionalProps<TArgs extends unknown[] = unknown[]> = {
     condition?: ((...args: TArgs) => TypeBooleanResult) | TypeBooleanResult;
     children?: ReactNode | ((...args: TArgs) => ReactNode);
@@ -32,19 +28,27 @@ export declare function ElseIf<TArgs extends unknown[] = unknown[]>(_: TypeCondi
 export declare function Else({ children, }: {
     children?: ReactNode | ((...args: unknown[]) => ReactNode);
 }): any;
-export declare function execIfCondition<TArgs extends unknown[] = unknown[]>(condition: TypeBooleanResult | ((...args: TArgs) => TypeBooleanResult), args?: TArgs): boolean;
-export declare function Ifz({ children }: TypeIfzProps): ReactElement | null;
+export declare function ElseIfz({ children }: {
+    children?: ReactNode;
+}): any;
+export declare function execIfCondition<TArgs extends unknown[]>(condition: TypeBooleanResult | ((...args: TArgs) => TypeBooleanResult), args: TArgs): boolean;
+export declare function Ifz({ children }: TypeIfzProps): React.JSX.Element;
 export declare namespace Ifz {
     var If: typeof import("./Ifz").If;
     var ElseIf: typeof import("./Ifz").ElseIf;
     var Else: typeof import("./Ifz").Else;
+    var ElseIfz: typeof import("./Ifz").ElseIfz;
     var chain: (opts?: {
         logger?: IfzLogger;
         trace?: boolean;
     }) => IfzChain;
 }
-export declare const ElseIfz: typeof Ifz;
-export declare const When: <TArgs extends unknown[] = unknown[]>({ condition, children, args, }: TypeConditionalProps<TArgs>) => React.JSX.Element;
+type InferArgs<T> = T extends (...args: infer A) => any ? A : unknown[];
+export declare function When<TCond extends (...args: any[]) => any>({ condition, children, args, }: {
+    condition: TCond | TypeBooleanResult;
+    children?: ReactNode | ((...args: InferArgs<TCond>) => ReactNode);
+    args?: InferArgs<TCond>;
+}): React.JSX.Element;
 export declare const WhenAll: React.FC<{
     conditions: boolean[];
     children: ReactNode;

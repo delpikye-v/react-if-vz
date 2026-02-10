@@ -1,8 +1,5 @@
 import React, { ReactNode } from "react";
 import { WrapperType } from "./types";
-/**
- * T = type of switch value
- */
 export type TypeSwitchProps<T = any> = {
     value?: (() => T) | T;
     children: ReactNode;
@@ -10,6 +7,7 @@ export type TypeSwitchProps<T = any> = {
 };
 export type TypeCaseProps<T = any> = {
     value: (() => T) | T;
+    match?: (switchValue: T, caseValue: T) => boolean;
     children?: ReactNode | ((...args: unknown[]) => ReactNode);
     args?: unknown[];
     className?: string;
@@ -24,8 +22,7 @@ export type TypeDefaultProps = {
     style?: React.CSSProperties;
     wrapper?: WrapperType;
 };
-export declare function execSwitchCondition<T>(condition: T | ((...args: unknown[]) => T), args?: unknown[]): T;
-export declare function Switch<T = any>({ value, children, args, }: TypeSwitchProps<T>): React.JSX.Element;
+export declare function Switch<T = any>({ value, children, args, }: TypeSwitchProps<T>): React.ReactNode;
 export declare namespace Switch {
     var Case: typeof import("./SwitchCase").Case;
     var Default: typeof import("./SwitchCase").Default;

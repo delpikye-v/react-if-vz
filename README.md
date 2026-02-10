@@ -2,17 +2,19 @@
 
 [![NPM](https://img.shields.io/npm/v/react-if-vz.svg)](https://www.npmjs.com/package/react-if-vz) ![Downloads](https://img.shields.io/npm/dt/react-if-vz.svg)
 
----
-
 🌟 [LIVE DEMO](https://codesandbox.io/p/sandbox/dtknv4)
+
+---
 
 **react-if-vz** is a lightweight, declarative conditional-rendering toolkit for React.
 
 It helps you replace deeply nested ternaries and `&&` chains with **clear, readable JSX blocks**.
 
+> Write conditions like logic, read JSX like a story.
+
 ---
 
-## 📖 react-if-vz
+## 📖 Why react-if-vz?
 
 - **Ifz / If / ElseIf / Else** – nested boolean logic
 - **When / WhenAll / WhenAny / WhenNot** – single-line conditions
@@ -22,6 +24,10 @@ It helps you replace deeply nested ternaries and `&&` chains with **clear, reada
 - Debug logging & StrictMode-safe design
 - Function children & shared args
 - Optional wrapper / className / style per block
+- Perfect for dashboards, admin panels, feature flags, and UI with complex branching logic.
+
+> Note: Wrappers are applied **only when explicitly provided**.  
+> `className` and `style` do not trigger auto-wrapping.
 
 ---
 
@@ -86,6 +92,27 @@ import { Ifz, If, ElseIf, Else } from "react-if-vz";
     <Else>C</Else>
   </ElseIfz>
 </Ifz>
+```
+
+---
+
+### Type inference with function conditions
+```ts
+<Ifz>
+  <If
+    condition={(user: { id: number; role: "admin" | "user" }) =>
+      user.role === "admin"
+    }
+    args={[{ id: 1, role: "admin" }]}
+  >
+    {(user) => <div>Admin ID: {user.id}</div>}
+  </If>
+
+  <Else>
+    {(args) => <div>User role: {args[0].role}</div>}
+  </Else>
+</Ifz>
+
 ```
 
 ---
@@ -185,6 +212,29 @@ return when(v => v > 10, <Big />)
 - Works with StrictMode & SSR
 - Optional debug tracing
 - Tiny, dependency-free core
+
+---
+
+## 📊 Conditional Rendering Libraries Comparison
+
+| **Criteria**              | **react-if-vz** | **react-if** | **react-condish** | **react-if-then-else-switch** |
+| ------------------------- | :-------------: | :----------: | :---------------: | :---------------------------: |
+| Declarative JSX           |        ✅        |       ✅     |         ⚠️        |               ✅               |
+| If / Else                 |        ✅        |       ✅     |         ⚠️        |               ✅               |
+| ElseIf                    |        ✅        |       ❌     |         ❌        |               ❌               |
+| Switch / Case             |        ✅        |       ❌     |         ✅        |               ✅               |
+| Boolean Switch (no value) |        ✅        |       ❌     |         ⚠️        |               ❌               |
+| Function children         |        ✅        |       ❌     |         ❌        |               ❌               |
+| Shared args               |        ✅        |       ❌     |         ❌        |               ❌               |
+| TypeScript inference      |     ✅ Strong    |   ⚠️ Basic   |         ❌        |               ❌               |
+| Hook API                  |   ✅ `useIfz()`  |       ❌     |         ❌        |               ❌               |
+| Chain / Fluent API        |        ✅        |       ❌     |         ❌        |               ❌               |
+| Wrapper control           |    ✅ Explicit   |  ❌ Implicit |         ❌        |               ❌               |
+| Debug / trace             |        ✅        |       ❌     |         ❌        |               ❌               |
+| StrictMode / SSR safe     |        ✅        |      ⚠️      |         ⚠️        |               ⚠️               |
+| Bundle size               |     🟢 Small     |   🟢 Small   |   🟢 Very small   |           🟡 Medium            |
+| Actively designed         |        ✅        |      ⚠️      |         ⚠️        |               ❌               |
+
 
 ---
 
