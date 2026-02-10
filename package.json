@@ -1,6 +1,6 @@
 {
   "name": "react-if-vz",
-  "version": "2.4.0",
+  "version": "3.0.0",
   "description": "Declarative conditional rendering for React — logic-first, TypeScript-native.",
   "author": "Delpi.Kye",
   "license": "MIT",
